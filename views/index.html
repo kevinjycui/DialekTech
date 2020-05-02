@@ -74,9 +74,15 @@
       <h1><center>Insert Name of Hack</h1>
       <p><br /><center>Click on the "Choose File" button to upload a file:</p>
 
+<<<<<<< HEAD
 		<form action="/action_page.php">
   		<input type="file" id="myFile" name="filename">
       <button type="button" class="btn btn-success">Submit</button>
+=======
+		<form action="/upload" method="post" enctype="multipart/form-data">
+  		<input type="file" id="myFile" name="soundBlob">
+      <input type="submit">
+>>>>>>> branch 'master' of https://github.com/kevinjycui/TOHacks-Submission.git
     </form>
       <hr>
     </div>
@@ -89,25 +95,6 @@
 <footer class="container-fluid text-center">
   <p><a href="https://github.com/kevinjycui/TOHacks-Submission">Check us out on GitHub</a></p>
 </footer>
-
-<script>
-  function FileUpload(file) {
-    const reader = new FileReader();
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://tohacks-app.herokuapp.com/upload');
-    xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
-    reader.onload = function(evt) {
-      xhr.send(evt.target.result);
-    }
-    reader.readAsBinaryString(file);
-  }
-
-  function uploadFile() {
-    const file = document.getElementById('myFile').files[0];
-    console.log(file);
-    new FileUpload(file);
-  }
-</script>
 
 </body>
 </html>
