@@ -20,16 +20,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/views/index.html'));
 });
 
-app.post('/upload', upload.single('soundBlob'), function(req, res, next) {
-  let uploadLocation = __dirname + '/public/uploads'  + req.file.originalname;
+app.post('/upload', upload.single('soundBlob'), function(req, res) {
+  let uploadLocation = __dirname + '/public/uploads/'  + req.file.originalname;
   console.log(uploadLocation);
   fs.writeFileSync(uploadLocation, Buffer.from(new Uint8Array(req.file.buffer)));
-  res.sendStatus(200);
-  next();
+  res.json({});
 });
 
 // catch 404 and forward to error handler
