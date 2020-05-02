@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const http = require('http');
 const multer = require('multer');
+const fs = require('fs');
 const upload = multer();
 const port = process.env.PORT || 4000;
 
@@ -25,6 +26,7 @@ app.post('/upload', upload.single('soundBlob'), function(req, res, next) {
   let uploadLocation = __dirname + '/public/uploads'  + req.file.originalname;
   fs.writeFileSync(uploadLocation, Buffer.from(new Uint8Array(req.file.buffer)));
   res.sendStatus(200);
+  next();
 });
 
 // catch 404 and forward to error handler
