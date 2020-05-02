@@ -93,5 +93,23 @@
   <p><a href="https://github.com/kevinjycui/TOHacks-Submission">View us on GitHub</a></p>
 </footer>
 
+<script>
+  function FileUpload(file) {
+    const reader = new FileReader();
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://tohacks-app.herokuapp.com/upload');
+    xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
+    reader.onload = function(evt) {
+      xhr.send(evt.target.result);
+    }
+    reader.readAsBinaryString(file);
+  }
+
+  function uploadFile() {
+    const file = document.getElementById('myFile').files[0];
+    console.log(file);
+  }
+</script>
+
 </body>
 </html>
