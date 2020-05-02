@@ -7,10 +7,12 @@ const http = require('http');
 const multer = require('multer');
 const fs = require('fs');
 const upload = multer();
+const cors = require('cors');
 const port = process.env.PORT || 4000;
 
 const app = express();
 
+app.use(cors());
 app.set('view engine', 'html');
 app.use(logger('dev'));
 app.use(express.json());
