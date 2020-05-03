@@ -39,15 +39,44 @@
     </div>
     <div class="col-sm-8 text-left"> 
       <h1><center>DialekTech</h1>
-
+      <h2>Transcription</h2>
+      <p id="transcription">
+        <div id="transcription-loader" class="loader"></div>
+      </p>
       <strong>Enter a question:</strong><br/>
-      <textarea></textarea>
+      <textarea id="question"></textarea><br/>
+      <button onclick="askQuestion()">Ask question!</button>
+      <p id="answer"></p>
     </div>
     <div class="col-sm-2 sidenav">
       <p>TOHacks 2020</p>
     </div>
   </div>
 </div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  (async() => {
+    const response = await axios.get('/transcription', {
+      timeout: 180000
+    });
+    console.log(response);
+    document.getElementById('transcription').innerHTML = response.data.data;
+    document.getElementById('transcription-loader').style.display = 'none';
+  })();
+
+  async function askQuestion() {
+    const question = document.getElementById('question').value;
+    const response = await axios({
+      method: 'post',
+      url: '/question',
+      data: {
+        question
+      }
+    });
+    document.getElementById('answer').innerHTML = response.data.data;
+  }
+</script>
 
 <footer class="container-fluid text-center">
   <p><a href="https://github.com/kevinjycui/TOHacks-Submission"><img class="icon" src="sources/github.png"></img></a></p>
