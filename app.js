@@ -8,9 +8,9 @@ const multer = require('multer');
 const fs = require('fs');
 const upload = multer();
 const cors = require('cors');
-const utils = require('./utils.js');
 const port = process.env.PORT || 4000;
 const mongoose = require('mongoose');
+const {converter, receiver, comparator, displayer} = require('./utils');
 
 mongoose.connect(`mongodb+srv://leonzalion:${process.env.DB_PASS}@dialek-tech-x0vqm.mongodb.net/test`);
 
@@ -34,10 +34,10 @@ app.post('/upload', upload.single('soundBlob'), function(req, res) {
   console.log(uploadLocation);
   fs.writeFileSync(uploadLocation, Buffer.from(new Uint8Array(req.file.buffer)));
   res.json({});
-  utils.converter(uploadLocation);
-  utils.receiver("./public/uploads/audio.flac");
-  utils.comparator("Sample question here"); //put the question here
-  utils.displayer();
+  converter(uploadLocation);
+  receiver("./public/uploads/audio.flac");
+  comparator("Sample question here"); //put the question here
+  displayer();
 });
 
 // catch 404 and forward to error handler
