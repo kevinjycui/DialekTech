@@ -42,5 +42,8 @@ async function main(question) {
     } 
 
 }
-main('literally put anything in here').catch(console.error);
+
+module.exports = () => {
+    main('literally put anything in here').catch(console.error);
+};
 // require('dcp-client').init().then(main).finally(() => setImmediate(process.exit))

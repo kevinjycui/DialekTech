@@ -52,4 +52,7 @@ async function main() {
     fs.writeFileSync('./public/responses/response.txt', transcription);
     fs.writeFileSync("./public/responses/response.json", JSON.stringify(worddict));
 }
-main().catch(console.error);
+
+module.exports = () => {
+    main().catch(console.error);
+}
