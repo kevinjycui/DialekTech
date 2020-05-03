@@ -1,5 +1,3 @@
-const fs = require("fs");
-
-module.exports = () => {
-  return fs.readFileSync("public/responses/response.txt", 'utf8');
+exports.default = (outputMessage) => {
+    document.getElementById("timestamp-message").innerHTML = outputMessage;
 };
