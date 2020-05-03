@@ -10,6 +10,7 @@
     "@google-cloud/storage": "^4.7.0",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
+    "dcp-client": "git+https://github.com/wesgarland/dcp-client.git",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "fluent-ffmpeg": "^2.1.2",

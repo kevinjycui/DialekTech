@@ -30,6 +30,11 @@ footer {
 	padding: 15px;
 }
 
+.icon {
+    width: 144px;
+    height: auto;
+}
+
 
 /* On small screens, set height to 'auto' for sidenav and grid */
 
