@@ -29,7 +29,7 @@ module.exports = async (question) => {
 
     if (len <= words.length) {
       // job = compute.for(0, words.length-len, function(i) {
-        for (let i=0; i<words.length-len, i++) {
+        for (let i=0; i<words.length-len; i++) {
             let ans = "";
             for (let j = 0; j < len - 1; j++) {
                 ans += words[i + j] + " ";
