@@ -1,4 +1,4 @@
-exports.default = (question) => {
+module.exports = (question) => {
     const fs = require("fs");
     let stringSimilarity = require("string-similarity");
 
@@ -41,9 +41,5 @@ exports.default = (question) => {
         return 'Your question is too long!';
     }
 
-};
-
-module.exports = () => {
-    main('literally put anything in here').catch(console.error);
 };
 // require('dcp-client').init().then(main).finally(() => setImmediate(process.exit))
