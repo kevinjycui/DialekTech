@@ -1,4 +1,4 @@
-exports.default = (question) => {
+module.exports = (question) => {
     const fs = require("fs");
     let stringSimilarity = require("string-similarity");
   
