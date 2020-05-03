@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 
 const EntrySchema = mongoose.Schema({
-  text: {
+  transcription: {
     type: String,
     required: true
   },
-  words: [String],
-  timestamps: [Number]
+  timestamps: {
+    type: Object,
+    required: true
+  }
 })
 
 const Entry = mongoose.model('Entry', EntrySchema);

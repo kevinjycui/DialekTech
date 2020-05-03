@@ -1,3 +1,3 @@
-exports.default = (outputMessage) => {
+module.exports = (outputMessage) => {
     document.getElementById("timestamp-message").innerHTML = outputMessage;
 };
