@@ -34,11 +34,11 @@ async function main(question) {
             console.log(words[i]);
         }
 
-        console.log(`${timestamps[matches.bestMatchIndex]} to ${timestamps[matches.bestMatchIndex+len-1]}`);
+        return timestamps[matches.bestMatchIndex] + "to" +timestamps[matches.bestMatchIndex+len-1];
     }
 
     else {
-        console.log('Your question is too long!');
+        return 'Your question is too long!';
     } 
 
 }

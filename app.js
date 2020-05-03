@@ -36,8 +36,8 @@ app.post('/upload', upload.single('soundBlob'), function(req, res) {
   res.json({});
   converter(uploadLocation);
   receiver("./public/uploads/audio.flac");
-  comparator("Sample question here"); //put the question here
-  displayer();
+  let outputMessage = comparator("Sample question here"); //put the question here
+  displayer(outputMessage);
 });
 
 // catch 404 and forward to error handler
