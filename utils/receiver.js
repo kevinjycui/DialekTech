@@ -52,7 +52,7 @@ module.exports = async (fileName) => {
   });
 
   return Entry.create({
-    worddict,
+    timestamps,
     transcription
   });
 };

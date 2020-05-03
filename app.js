@@ -6,12 +6,10 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const http = require('http');
 const multer = require('multer');
-const fs = require('fs');
 const upload = multer();
 const cors = require('cors');
 const port = process.env.PORT || 4000;
 const mongoose = require('mongoose');
-const {converter, receiver, comparator, displayer} = require('./utils');
 
 mongoose.connect(`mongodb+srv://leonzalion:${process.env.DB_PASS}@dialek-tech-x0vqm.mongodb.net/test`, {
   useNewUrlParser: true,
@@ -32,14 +30,8 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/views/index.html'))
 });
 
-app.post('/upload', upload.single('soundBlob'), async (req, res) => {
-  let uploadLocation = __dirname + '/public/uploads/video.mp4'
-  fs.writeFileSync(uploadLocation, Buffer.from(new Uint8Array(req.file.buffer)));
-  converter(uploadLocation);
-  const entry = await receiver("./public/uploads/audio.flac");
-  comparator("Sample question here"); //put the question here
-  res.redirect(entry._id, `/video/${entry._id}`);
-});
+const uploadController = require('./controllers/upload');
+app.post('/upload', upload.single('soundBlob'), uploadController);
 
 app.get('/video/:id', (req, res) => {
   const { id } = req.params;
