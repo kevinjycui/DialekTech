@@ -58,13 +58,13 @@ module.exports = async (question) => {
         let ret = "";
         for (let i = matches.bestMatchIndex; i < matches.bestMatchIndex + len; i++) {
             console.log(words[i]);
-            ret += words[i];
+            ret += words[i] + " ";
         }
 
         console.log(timestamps[matches.bestMatchIndex] + "to" + timestamps[matches.bestMatchIndex + len - 1]);
         return {
-            start: timestamps[matches.bestMatchIndex + len - 1],
-            end: timestamps[matches.bestMatchIndex],
+            start: timestamps[matches.bestMatchIndex],
+            end: timestamps[matches.bestMatchIndex + len - 1],
             text: ret, // sentence goes here
         };
     } else {

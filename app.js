@@ -32,11 +32,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'))
 });
 
-app.post('/question', (req, res) => {
+app.post('/question', async (req, res) => {
   const { question } = req.body;
-  res.json({
-    data: comparator(question)
-  });
+  const data = await comparator(question);
+  console.log(data);
+  res.json({...data});
 });
 
 app.post('/upload', upload.single('soundBlob'), function(req, res) {
