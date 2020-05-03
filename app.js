@@ -24,8 +24,9 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/views/index.html'));
 });
 
+
 app.post('/upload', upload.single('soundBlob'), function(req, res) {
-  let uploadLocation = __dirname + '/public/uploads/'  + req.file.originalname;
+  let uploadLocation = __dirname + '/public/uploads/'  + req.file.originalname
   console.log(uploadLocation);
   fs.writeFileSync(uploadLocation, Buffer.from(new Uint8Array(req.file.buffer)));
   res.json({});
