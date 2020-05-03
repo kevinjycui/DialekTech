@@ -50,10 +50,18 @@ module.exports = async (fileName) => {
       }
     });
   });
+  fs.writeFileSync("./public/responses/response.txt", transcription);
+  fs.writeFileSync(
+    "./public/responses/response.json",
+    JSON.stringify(worddict)
+  );
 
-  return Entry.create({
-    timestamps,
-    transcription
+  Entry.create({
+    transcription,
+    timestamps: worddict
+  }, function(err, el) {
+    if (err) return Promise.reject(err);
+    return Promise.resolve(el);
   });
 };
-
+  
