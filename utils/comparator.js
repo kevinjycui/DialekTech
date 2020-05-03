@@ -61,7 +61,7 @@ module.exports = async (question) => {
 
 };
 
-let main = async (question) => {
+let main = async (question) => { // function for dev only
 
   const compute = require('dcp/compute');
 
@@ -90,7 +90,7 @@ let main = async (question) => {
           let ans = "";
           for (let j = 0; j < len - 1; j++) {
               ans += words[i + j] + " ";
-          }
+          }ans += words[i+len-1];
           checkWord.push(ans);
     });
     console.log(job);
