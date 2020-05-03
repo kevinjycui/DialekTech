@@ -13,7 +13,10 @@ const port = process.env.PORT || 4000;
 const mongoose = require('mongoose');
 const {converter, receiver, comparator, displayer} = require('./utils');
 
-mongoose.connect(`mongodb+srv://leonzalion:${process.env.DB_PASS}@dialek-tech-x0vqm.mongodb.net/test`);
+mongoose.connect(`mongodb+srv://leonzalion:${process.env.DB_PASS}@dialek-tech-x0vqm.mongodb.net/test`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 const app = express();
 
@@ -26,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/views/index.html'));
+  res.sendFile(path.join(__dirname + '/views/index.html'))
 });
 
 
@@ -37,8 +40,8 @@ app.post('/upload', upload.single('soundBlob'), function(req, res) {
   res.json({});
   converter(uploadLocation);
   receiver("./public/uploads/audio.flac");
-  comparator("Sample question here"); //put the question here
-  displayer();
+  let outputMessage = comparator("Sample question here"); //put the question here
+  displayer(outputMessage);
 });
 
 // catch 404 and forward to error handler
