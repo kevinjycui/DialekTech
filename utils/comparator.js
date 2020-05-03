@@ -1,6 +1,7 @@
+const fs = require("fs");
+let stringSimilarity = require("string-similarity");
+
 module.exports = (question) => {
-    const fs = require("fs");
-    let stringSimilarity = require("string-similarity");
 
     //removed let question
 
