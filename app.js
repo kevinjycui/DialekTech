@@ -40,6 +40,7 @@ app.post('/question', async (req, res) => {
 });
 
 app.post('/upload', upload.single('soundBlob'), function(req, res) {
+  if (!req.file) return res.send("Please upload a file.");
   let uploadLocation = __dirname + '/public/uploads/audio.mp3'
   fs.writeFileSync(uploadLocation, Buffer.from(new Uint8Array(req.file.buffer)));
   converter(uploadLocation);
