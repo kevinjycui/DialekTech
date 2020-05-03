@@ -1,4 +1,4 @@
-exports.comparator = (question) => {
+exports.default = (question) => {
     const fs = require("fs");
     let stringSimilarity = require("string-similarity");
   

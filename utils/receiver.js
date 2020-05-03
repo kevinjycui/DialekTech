@@ -1,4 +1,4 @@
-exports.receiver = (fileName) => {
+exports.default = (fileName) => {
     async function main() {
       const speech = require("@google-cloud/speech");
       const fs = require("fs");

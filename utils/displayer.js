@@ -1,4 +1,4 @@
-exports.displayer = () => {
+exports.default = () => {
     const fs = require("fs");
   
     let div = document.createElement("div");
