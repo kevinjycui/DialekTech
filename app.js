@@ -32,17 +32,19 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/views/index.html'))
 });
 
-
-app.post('/upload', upload.single('soundBlob'), function(req, res) {
+app.post('/upload', upload.single('soundBlob'), async (req, res) => {
   let uploadLocation = __dirname + '/public/uploads/audio.mp3'
-  console.log(uploadLocation);
   fs.writeFileSync(uploadLocation, Buffer.from(new Uint8Array(req.file.buffer)));
-  console.log(converter);
   converter(uploadLocation);
-  receiver("./public/uploads/audio.flac");
+  const entry = await receiver("./public/uploads/audio.flac");
   comparator("Sample question here"); //put the question here
-  res.json(displayer());
+  res.redirect(entry._id, `/video/${entry._id}`);
 });
+
+app.get('/video/:id', (req, res) => {
+  const { id } = req.params;
+  res.json({id});
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
