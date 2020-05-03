@@ -1,8 +1,8 @@
 var FFmpeg = require('fluent-ffmpeg');
 
-module.exports = () => {
+exports.default = (audioSource) => {
   var command = FFmpeg({
-    source: './public/uploads/audio.mp3'
+    source: audioSource
   })
   .addOption('-ac', 1)
   .saveToFile('./public/uploads/audio.flac');
