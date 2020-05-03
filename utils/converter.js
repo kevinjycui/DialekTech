@@ -1,6 +1,6 @@
 var FFmpeg = require('fluent-ffmpeg');
 
-module.exports = (audioSource) => {
+exports.default = (audioSource) => {
   var command = FFmpeg({
     source: audioSource
   })
