@@ -25,7 +25,7 @@ module.exports = async (audioSource) => {
         source: audioSource
       })
         .addOption('-ac', 1)
-        .saveToFile(path.join(__dirname, '..', 'public/uploads/audio.mp3'));
+        .saveToFile(path.join(__dirname, '..', 'public/uploads/audio.flac'));
     })
     .catch(err => {
       console.log('mp4 to mp3 failed: ' + err);
