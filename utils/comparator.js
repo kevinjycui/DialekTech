@@ -33,7 +33,8 @@ module.exports = async (question) => {
             let ans = "";
             for (let j = 0; j < len - 1; j++) {
                 ans += words[i + j] + " ";
-            }
+            }ans += words[i+len-1];
+            checkWord.push(ans);
         // }
       });
 
@@ -94,7 +95,8 @@ let main = async (question) => {
           let ans = "";
           for (let j = 0; j < len - 1; j++) {
               ans += words[i + j] + " ";
-          }
+          }ans += words[i+len-1];
+          checkWord.push(ans);
     });
     console.log(job);
 
