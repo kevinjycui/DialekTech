@@ -1,5 +1,5 @@
+var FFmpeg = require("fluent-ffmpeg");
 exports.converter = (audioSource) => {
-    var FFmpeg = require("fluent-ffmpeg");
   
     var command = FFmpeg({
       source: audioSource, //changed this line
