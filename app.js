@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 
 app.post('/question', async (req, res) => {
   const { question } = req.body;
-  const data = await comparator(question);
+  const data = require('dcp-client').init().then(() => comparator(question)).finally(() => setImmediate(process.exit));
   console.log(data);
   res.json({...data});
 });
