@@ -53,6 +53,6 @@ async function main() {
     fs.writeFileSync("./public/responses/response.json", JSON.stringify(worddict));
 }
 
-module.exports = () => {
+module.exports = (fileName) => {
     main().catch(console.error);
 }
