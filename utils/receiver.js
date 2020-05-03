@@ -1,8 +1,7 @@
-const Entry = require('../models/Entry');
+const speech = require("@google-cloud/speech");
+const fs = require("fs");
 
 module.exports = async (fileName) => {
-  const speech = require("@google-cloud/speech");
-  const fs = require("fs");
   //removed the filename line
 
   const client = new speech.SpeechClient();
@@ -29,7 +28,7 @@ module.exports = async (fileName) => {
   console.log(response);
   var transcription = "";
   var worddict = {};
-  response.results.forEach((result) => {
+  for (const result of response.results) {
     console.log(`Transcription: ${result.alternatives[0].transcript}`);
     transcription += result.alternatives[0].transcript;
     result.alternatives[0].words.forEach((wordInfo) => {
@@ -49,24 +48,18 @@ module.exports = async (fileName) => {
         worddict[startSecs] = wordInfo.word;
       }
     });
-  });
+  }
+
   fs.writeFileSync("./public/responses/response.txt", transcription);
   fs.writeFileSync(
     "./public/responses/response.json",
     JSON.stringify(worddict)
   );
 
-  const timestamps = {};
-  Object.keys(worddict).forEach(key => {
-    timestamps[Math.floor(+key * 1000)] = worddict[key];
-  });
-
-  Entry.create({
+  console.log("asoentuhs", transcription, worddict);
+  return {
     transcription,
-    timestamps
-  }, function(err, el) {
-    if (err) return Promise.reject(err);
-    return Promise.resolve(el);
-  });
+    timestamps: worddict
+  }
 };
   
