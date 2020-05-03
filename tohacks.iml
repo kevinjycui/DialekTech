@@ -7,5 +7,6 @@
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="dcp-client" level="application" />
+    <orderEntry type="library" name="@types/express" level="application" />
   </component>
 </module>

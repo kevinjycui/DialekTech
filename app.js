@@ -9,6 +9,9 @@ const fs = require('fs');
 const upload = multer();
 const cors = require('cors');
 const port = process.env.PORT || 4000;
+const mongoose = require('mongoose');
+
+mongoose.connect(`mongodb+srv://leonzalion:${process.env.DB_PASS}@dialek-tech-x0vqm.mongodb.net/test`);
 
 const app = express();
 
