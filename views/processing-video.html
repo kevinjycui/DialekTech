@@ -79,8 +79,8 @@
     });
     console.log(response);
     document.getElementById('answer').innerHTML = `
-      <strong>Start: </strong>${response.data.start}<br/>
-      <strong>Text: </strong>${response.data.text}...<br/>
+      <strong>Start: </strong>${response.data.start || 'Loading ...'}<br/>
+      <strong>Text: </strong>${response.data.text || 'Loading'}...<br/>
     `;
   }
 </script>
