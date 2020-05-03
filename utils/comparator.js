@@ -1,8 +1,6 @@
 const dcpClient = require('dcp-client');
-dcpClient.init().then(() => {
- // DCP Client is ready
- const compute = require('dcp/compute');
-});
+dcpClient.init()
+const compute = require('dcp/compute');
 
 const fs = require("fs");
 let stringSimilarity = require("string-similarity");
@@ -30,7 +28,7 @@ module.exports = (question) => {
     let checkWord = [];
 
     if (len <= words.length) {
-      job = compute(0, words.length-len, function(i) {
+      job = compute.for(0, words.length-len, function(i) {
             let ans = "";
             for (let j = 0; j < len - 1; j++) {
                 ans += words[i + j] + " ";
@@ -51,4 +49,3 @@ module.exports = (question) => {
     }
 
 };
-// require('dcp-client').init().then(main).finally(() => setImmediate(process.exit))

@@ -10,6 +10,8 @@ const upload = multer();
 const cors = require('cors');
 const port = process.env.PORT || 4000;
 const mongoose = require('mongoose');
+const fs = require('fs');
+const {converter, receiver, comparator} = require('./utils');
 
 mongoose.connect(`mongodb+srv://leonzalion:${process.env.DB_PASS}@dialek-tech-x0vqm.mongodb.net/test`, {
   useNewUrlParser: true,
@@ -30,13 +32,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/views/index.html'))
 });
 
-const uploadController = require('./controllers/upload');
-app.post('/upload', upload.single('soundBlob'), uploadController);
-
-app.get('/video/:id', (req, res) => {
-  const { id } = req.params;
-  res.json({id});
-})
 app.post('/upload', upload.single('soundBlob'), function(req, res) {
   let uploadLocation = __dirname + '/public/uploads/audio.mp3'
   console.log(uploadLocation);
