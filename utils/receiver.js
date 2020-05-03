@@ -56,9 +56,14 @@ module.exports = async (fileName) => {
     JSON.stringify(worddict)
   );
 
+  const timestamps = {};
+  Object.keys(worddict).forEach(key => {
+    timestamps[Math.floor(+key * 1000)] = worddict[key];
+  });
+
   Entry.create({
     transcription,
-    timestamps: worddict
+    timestamps
   }, function(err, el) {
     if (err) return Promise.reject(err);
     return Promise.resolve(el);
