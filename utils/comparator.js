@@ -1,3 +1,7 @@
+const dcpClient = require('dcp-client');
+dcpClient.init()
+const compute = require('dcp/compute');
+
 const fs = require("fs");
 let stringSimilarity = require("string-similarity");
 
@@ -6,6 +10,7 @@ module.exports = (question) => {
     //removed let question
 
     question = question.trim();
+    console.log(question);
 
     if (
         question.charAt(question.length - 1) >= 33 ||
@@ -23,7 +28,7 @@ module.exports = (question) => {
     let checkWord = [];
 
     if (len <= words.length) {
-        for (let i = 0; i < words.length - len; i++) {
+      job = compute.for(0, words.length-len, function(i) {
             let ans = "";
             for (let j = 0; j < len - 1; j++) {
                 ans += words[i + j] + " ";
@@ -35,12 +40,12 @@ module.exports = (question) => {
             for (let i = matches.bestMatchIndex; i < matches.bestMatchIndex + len; i++) {
                 console.log(words[i]);
             }
-
-            return timestamps[matches.bestMatchIndex] + "to" + timestamps[matches.bestMatchIndex + len - 1];
-        }
+            
+            console.log(timestamps[matches.bestMatchIndex] + "to" + timestamps[matches.bestMatchIndex + len - 1]);
+            return [timestamps[matches.bestMatchIndex], timestamps[matches.bestMatchIndex + len - 1]];
+      });
     } else {
         return 'Your question is too long!';
     }
 
 };
-// require('dcp-client').init().then(main).finally(() => setImmediate(process.exit))

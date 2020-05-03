@@ -8,7 +8,7 @@ const EntrySchema = mongoose.Schema({
   timestamps: {
     type: Object,
     required: true
-  }
+  },
 })
 
 const Entry = mongoose.model('Entry', EntrySchema);

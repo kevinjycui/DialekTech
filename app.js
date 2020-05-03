@@ -6,12 +6,12 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const http = require('http');
 const multer = require('multer');
-const fs = require('fs');
 const upload = multer();
 const cors = require('cors');
 const port = process.env.PORT || 4000;
 const mongoose = require('mongoose');
-const {converter, receiver, comparator, displayer} = require('./utils');
+const fs = require('fs');
+const {converter, receiver, comparator} = require('./utils');
 
 mongoose.connect(`mongodb+srv://leonzalion:${process.env.DB_PASS}@dialek-tech-x0vqm.mongodb.net/test`, {
   useNewUrlParser: true,
@@ -31,7 +31,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'))
 });
-
 
 app.post('/upload', upload.single('soundBlob'), function(req, res) {
   let uploadLocation = __dirname + '/public/uploads/audio.mp3'
