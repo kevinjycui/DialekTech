@@ -32,14 +32,8 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/views/index.html'))
 });
 
-app.post('/upload', upload.single('soundBlob'), async (req, res) => {
-  let uploadLocation = __dirname + '/public/uploads/audio.mp3'
-  fs.writeFileSync(uploadLocation, Buffer.from(new Uint8Array(req.file.buffer)));
-  converter(uploadLocation);
-  const entry = await receiver("./public/uploads/audio.flac");
-  comparator("Sample question here"); //put the question here
-  res.redirect(entry._id, `/video/${entry._id}`);
-});
+const uploadController = require('./controllers/upload');
+app.post('/upload', upload.single('soundBlob'), uploadController);
 
 app.get('/video/:id', (req, res) => {
   const { id } = req.params;
