@@ -1,3 +1,4 @@
+require('dotenv').config()
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -10,7 +11,7 @@ const upload = multer();
 const cors = require('cors');
 const port = process.env.PORT || 4000;
 const mongoose = require('mongoose');
-const {converter, reciever, comparator, displayer} = require('./utils');
+const {converter, receiver, comparator, displayer} = require('./utils');
 
 mongoose.connect(`mongodb+srv://leonzalion:${process.env.DB_PASS}@dialek-tech-x0vqm.mongodb.net/test`);
 

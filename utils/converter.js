@@ -1,9 +1,9 @@
-var FFmpeg = require('fluent-ffmpeg');
-
-module.exports = () => {
-  var command = FFmpeg({
-    source: './public/uploads/audio.mp3'
-  })
-  .addOption('-ac', 1)
-  .saveToFile('./public/uploads/audio.flac');
-}
+var FFmpeg = require("fluent-ffmpeg");
+exports.converter = (audioSource) => {
+  
+    var command = FFmpeg({
+      source: audioSource, //changed this line
+    })
+      .addOption("-ac", 1)
+      .saveToFile("./public/uploads/audio.flac");
+  };
