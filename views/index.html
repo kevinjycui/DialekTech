@@ -1,13 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>TOHacks2020</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
+
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;
@@ -67,47 +69,28 @@
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="#">pls let us win</a></p>
+      <p> TOHacks 2020 </p>
     </div>
     <div class="col-sm-8 text-left"> 
       <h1><center>Insert Name of Hack</h1>
       <p><br /><center>Click on the "Choose File" button to upload a file:</p>
 
-		<form action="/action_page.php">
-  		<input type="file" id="myFile" name="filename">
-      <input type="submit">
+		<form action="/upload" method="post" enctype="multipart/form-data">
+  		<input type="file" id="myFile" name="soundBlob">
+      <button type="submit" class="btn btn-success">Submit</button>
+
     </form>
       <hr>
     </div>
     <div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>:)</p>
-      </div>
+      <p>TOHacks 2020</p>
     </div>
   </div>
 </div>
 
 <footer class="container-fluid text-center">
-  <p>This is our TOHacks Submission</p>
+  <p><a href="https://github.com/kevinjycui/TOHacks-Submission">Check us out on GitHub</a></p>
 </footer>
-
-<script>
-  function FileUpload(file) {
-    const reader = new FileReader();
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://tohacks-app.herokuapp.com/upload');
-    xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
-    reader.onload = function(evt) {
-      xhr.send(evt.target.result);
-    }
-    reader.readAsBinaryString(file);
-  }
-
-  function uploadFile() {
-    const file = document.getElementById('myFile').files[0];
-    console.log(file);
-  }
-</script>
 
 </body>
 </html>
