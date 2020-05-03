@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/upload', upload.single('soundBlob'), async (req, res) => {
-  let uploadLocation = __dirname + '/public/uploads/audio.mp3'
+  let uploadLocation = __dirname + '/public/uploads/video.mp4'
   fs.writeFileSync(uploadLocation, Buffer.from(new Uint8Array(req.file.buffer)));
   converter(uploadLocation);
   const entry = await receiver("./public/uploads/audio.flac");
