@@ -32,14 +32,19 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'))
 });
 
+app.post('/question', (req, res) => {
+  const { lessonId, question } = req.params.body;
+  res.json({
+    data: comparator(question)
+  });
+});
+
 app.post('/upload', upload.single('soundBlob'), function(req, res) {
   let uploadLocation = __dirname + '/public/uploads/audio.mp3'
-  console.log(uploadLocation);
   fs.writeFileSync(uploadLocation, Buffer.from(new Uint8Array(req.file.buffer)));
   converter(uploadLocation);
   receiver("./public/uploads/audio.flac");
-  comparator("Sample question here"); //put the question here
-  res.json({});
+  res.sendFile(path.join(__dirname, 'views/processing-video.html'));
 });
 
 // catch 404 and forward to error handler
