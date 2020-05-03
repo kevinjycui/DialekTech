@@ -37,11 +37,11 @@ app.post('/upload', upload.single('soundBlob'), function(req, res) {
   let uploadLocation = __dirname + '/public/uploads/audio.mp3'
   console.log(uploadLocation);
   fs.writeFileSync(uploadLocation, Buffer.from(new Uint8Array(req.file.buffer)));
-  res.json({});
+  console.log(converter);
   converter(uploadLocation);
   receiver("./public/uploads/audio.flac");
-  let outputMessage = comparator("Sample question here"); //put the question here
-  displayer(outputMessage);
+  comparator("Sample question here"); //put the question here
+  res.json(displayer());
 });
 
 // catch 404 and forward to error handler
